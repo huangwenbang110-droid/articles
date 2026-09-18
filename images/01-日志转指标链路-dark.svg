@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 580" width="1360" height="1160" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, -apple-system, sans-serif">
+<title>日志转指标的数据链路</title>
+<desc>日志先进入 Kafka，经 Logterminator 字段提取后再进入第二个 Kafka，最终写入 ElasticSearch。同一份数据在链路上两次经过 Kafka。</desc>
+
+<defs>
+<linearGradient id="gBg" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#0A0B14"/>
+<stop offset="45%" stop-color="#05060A"/>
+<stop offset="100%" stop-color="#08060F"/>
+</linearGradient>
+
+<radialGradient id="gGlow" cx="50%" cy="22%" r="58%">
+<stop offset="0%" stop-color="#7C3AED" stop-opacity="0.20"/>
+<stop offset="55%" stop-color="#4C1D95" stop-opacity="0.07"/>
+<stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+</radialGradient>
+
+<radialGradient id="gGlow2" cx="50%" cy="88%" r="45%">
+<stop offset="0%" stop-color="#22D3EE" stop-opacity="0.09"/>
+<stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+</radialGradient>
+
+<linearGradient id="gSelf" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#3B1580"/>
+<stop offset="100%" stop-color="#1A0F3D"/>
+</linearGradient>
+
+<linearGradient id="gOss" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#1B2130"/>
+<stop offset="100%" stop-color="#0E1219"/>
+</linearGradient>
+
+<linearGradient id="gFlow" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#A855F7"/>
+<stop offset="100%" stop-color="#4C1D95"/>
+</linearGradient>
+
+<linearGradient id="gLine" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#6D28D9" stop-opacity="0.9"/>
+<stop offset="100%" stop-color="#4B5563" stop-opacity="0.6"/>
+</linearGradient>
+
+<filter id="fGlow" x="-60%" y="-60%" width="220%" height="220%">
+<feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="blur"/>
+<feMerge>
+<feMergeNode in="blur"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+
+<filter id="fSoft" x="-40%" y="-40%" width="180%" height="180%">
+<feGaussianBlur in="SourceGraphic" stdDeviation="1.4" result="b"/>
+<feMerge>
+<feMergeNode in="b"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+
+<pattern id="pGrid" width="22" height="22" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.7" fill="#1B2233"/>
+</pattern>
+
+<marker id="arrP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#A855F7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<marker id="arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="0" y="0" width="680" height="580" fill="url(#gBg)"/>
+<rect x="0" y="0" width="680" height="580" fill="url(#pGrid)"/>
+<ellipse cx="340" cy="150" rx="330" ry="220" fill="url(#gGlow)"/>
+<ellipse cx="340" cy="500" rx="280" ry="150" fill="url(#gGlow2)"/>
+
+<text x="40" y="24" font-size="11" fill="#4B5563" letter-spacing="1.6">OCTOPUS · 日志转指标</text>
+
+<rect x="424" y="16" width="13" height="13" rx="3" fill="url(#gSelf)" stroke="#A855F7" stroke-width="0.9" filter="url(#fSoft)"/>
+<text x="443" y="23" font-size="12" fill="#C4B5FD" dominant-baseline="central">自研</text>
+<rect x="512" y="16" width="13" height="13" rx="3" fill="url(#gOss)" stroke="#3E4A5C" stroke-width="0.9"/>
+<text x="531" y="23" font-size="12" fill="#6B7280" dominant-baseline="central">开源</text>
+
+<line x1="40" y1="46" x2="40" y2="482" stroke="#2A3242" stroke-width="1"/>
+<circle cx="40" cy="40" r="2.5" fill="#A855F7" filter="url(#fSoft)"/>
+
+<text x="52" y="46" font-size="11" fill="#6B7280" letter-spacing="0.8" dominant-baseline="central">采集</text>
+<text x="52" y="138" font-size="11" fill="#6B7280" letter-spacing="0.8" dominant-baseline="central">传输</text>
+<text x="52" y="230" font-size="11" fill="#6B7280" letter-spacing="0.8" dominant-baseline="central">处理</text>
+<text x="52" y="322" font-size="11" fill="#6B7280" letter-spacing="0.8" dominant-baseline="central">传输</text>
+<text x="52" y="414" font-size="11" fill="#6B7280" letter-spacing="0.8" dominant-baseline="central">存储</text>
+
+<rect x="140" y="58" width="400" height="56" rx="10" fill="url(#gSelf)" stroke="#A855F7" stroke-width="1" filter="url(#fGlow)"/>
+<rect x="140" y="58" width="3" height="56" rx="1.5" fill="#A855F7"/>
+<text x="340" y="78" font-size="14" font-weight="500" fill="#EDE9FE" text-anchor="middle" dominant-baseline="central">Log SDK</text>
+<text x="340" y="98" font-size="12" fill="#A78BFA" text-anchor="middle" dominant-baseline="central">继承 Appender，把日志事件组装后写进 Kafka</text>
+
+<path d="M340 114 L340 150" fill="none" stroke="url(#gLine)" stroke-width="1.8" marker-end="url(#arrP)"/>
+
+<rect x="140" y="150" width="400" height="56" rx="10" fill="url(#gOss)" stroke="#3E4A5C" stroke-width="1"/>
+<text x="340" y="170" font-size="14" font-weight="500" fill="#B8C2CF" text-anchor="middle" dominant-baseline="central">Kafka · 日志 topic</text>
+<text x="340" y="190" font-size="12" fill="#6B7280" text-anchor="middle" dominant-baseline="central">原始日志数据</text>
+
+<line x1="540" y1="178" x2="554" y2="178" stroke="#F59E0B" stroke-width="1" stroke-opacity="0.55"/>
+<rect x="554" y="166" width="72" height="24" rx="12" fill="#F59E0B" fill-opacity="0.10" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1"/>
+<text x="590" y="178" font-size="12" fill="#FBBF24" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace, Consolas, monospace">第 1 次</text>
+
+<path d="M340 206 L340 242" fill="none" stroke="url(#gLine)" stroke-width="1.8" marker-end="url(#arrP)"/>
+
+<rect x="140" y="242" width="400" height="56" rx="10" fill="url(#gSelf)" stroke="#A855F7" stroke-width="1" filter="url(#fGlow)"/>
+<rect x="140" y="242" width="3" height="56" rx="1.5" fill="#A855F7"/>
+<text x="340" y="262" font-size="14" font-weight="500" fill="#EDE9FE" text-anchor="middle" dominant-baseline="central">Logterminator · 字段提取</text>
+<text x="340" y="282" font-size="12" fill="#A78BFA" text-anchor="middle" dominant-baseline="central">从日志里抽出数值，转成指标</text>
+
+<path d="M340 298 L340 334" fill="none" stroke="url(#gLine)" stroke-width="1.8" marker-end="url(#arrP)"/>
+
+<rect x="140" y="334" width="400" height="56" rx="10" fill="url(#gOss)" stroke="#3E4A5C" stroke-width="1"/>
+<text x="340" y="354" font-size="14" font-weight="500" fill="#B8C2CF" text-anchor="middle" dominant-baseline="central">Kafka · 指标 topic</text>
+<text x="340" y="374" font-size="12" fill="#6B7280" text-anchor="middle" dominant-baseline="central">同一条数据又走了一遍</text>
+
+<line x1="540" y1="362" x2="554" y2="362" stroke="#F59E0B" stroke-width="1" stroke-opacity="0.55"/>
+<rect x="554" y="350" width="72" height="24" rx="12" fill="#F59E0B" fill-opacity="0.10" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1"/>
+<text x="590" y="362" font-size="12" fill="#FBBF24" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace, Consolas, monospace">第 2 次</text>
+
+<path d="M340 390 L340 408" fill="none" stroke="url(#gLine)" stroke-width="1.8"/>
+<path d="M235 408 L445 408" fill="none" stroke="url(#gLine)" stroke-width="1.8"/>
+<path d="M235 408 L235 426" fill="none" stroke="url(#gLine)" stroke-width="1.8" marker-end="url(#arrP)"/>
+<path d="M445 408 L445 426" fill="none" stroke="url(#gLine)" stroke-width="1.8" marker-end="url(#arrG)"/>
+
+<rect x="140" y="426" width="190" height="56" rx="10" fill="url(#gSelf)" stroke="#A855F7" stroke-width="1" filter="url(#fGlow)"/>
+<rect x="140" y="426" width="3" height="56" rx="1.5" fill="#A855F7"/>
+<text x="237" y="446" font-size="13" font-weight="500" fill="#EDE9FE" text-anchor="middle" dominant-baseline="central">Mouth</text>
+<text x="237" y="466" font-size="12" fill="#A78BFA" text-anchor="middle" dominant-baseline="central">写入存储</text>
+
+<rect x="350" y="426" width="190" height="56" rx="10" fill="url(#gOss)" stroke="#3E4A5C" stroke-width="1"/>
+<text x="445" y="446" font-size="13" font-weight="500" fill="#B8C2CF" text-anchor="middle" dominant-baseline="central">ElasticSearch</text>
+<text x="445" y="466" font-size="12" fill="#6B7280" text-anchor="middle" dominant-baseline="central">指标落地 · 供查询告警</text>
+
+<rect x="90" y="512" width="500" height="32" rx="8" fill="#EF4444" fill-opacity="0.09" stroke="#EF4444" stroke-opacity="0.42" stroke-width="1"/>
+<text x="340" y="528" font-size="12" fill="#F87171" text-anchor="middle" dominant-baseline="central">这条链路 2020 年很合理，维护成本几年后才显出来</text>
+</svg>
