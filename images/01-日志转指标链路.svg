@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 680 470" width="680" height="470" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, -apple-system, sans-serif">
+<title>日志转指标的数据链路</title>
+<desc>日志数据先进入 Kafka，经 Logterminator 字段提取后再进入第二个 Kafka，最终写入 ElasticSearch。</desc>
+<rect x="0" y="0" width="680" height="470" fill="#ffffff"/>
+<defs>
+<marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text x="40" y="26" font-size="13" font-weight="500" fill="#444441" dominant-baseline="central">日志 → 指标的数据链路</text>
+
+<rect x="140" y="46" width="400" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="64" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Log SDK</text>
+<text x="340" y="84" font-size="12" fill="#534AB7" text-anchor="middle" dominant-baseline="central">把日志事件组装后写进 Kafka</text>
+
+<path d="M340 102 L340 126" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+<rect x="140" y="126" width="400" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="144" font-size="14" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">Kafka · 日志 topic</text>
+<text x="340" y="164" font-size="12" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">原始日志数据</text>
+<text x="558" y="154" font-size="12" fill="#A32D2D" dominant-baseline="central">第 1 次</text>
+
+<path d="M340 182 L340 206" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+<rect x="140" y="206" width="400" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="224" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Logterminator · 字段提取</text>
+<text x="340" y="244" font-size="12" fill="#534AB7" text-anchor="middle" dominant-baseline="central">从日志里抽出数值，转成指标</text>
+
+<path d="M340 262 L340 286" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+<rect x="140" y="286" width="400" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="304" font-size="14" font-weight="500" fill="#444441" text-anchor="middle" dominant-baseline="central">Kafka · 指标 topic</text>
+<text x="340" y="324" font-size="12" fill="#5F5E5A" text-anchor="middle" dominant-baseline="central">同一条数据又走了一遍</text>
+<text x="558" y="314" font-size="12" fill="#A32D2D" dominant-baseline="central">第 2 次</text>
+
+<path d="M340 342 L340 366" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+<rect x="140" y="366" width="400" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="384" font-size="14" font-weight="500" fill="#3C3489" text-anchor="middle" dominant-baseline="central">Mouth → ElasticSearch</text>
+<text x="340" y="404" font-size="12" fill="#534AB7" text-anchor="middle" dominant-baseline="central">写入存储，供查询与告警</text>
+
+<rect x="90" y="436" width="500" height="28" rx="6" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="340" y="450" font-size="12" fill="#A32D2D" text-anchor="middle" dominant-baseline="central">这条链路 2020 年很合理，但维护成本在几年后才显出来</text>
+</svg>
