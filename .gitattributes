@@ -1,0 +1,5 @@
+# 脚本必须是 LF，否则在 Windows 上 clone 后 bash 会报 $'\r': command not found
+*.sh text eol=lf
+*.svg text eol=lf
+*.md text eol=lf
+*.png binary
